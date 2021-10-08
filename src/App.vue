@@ -1,26 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<div>
+  <p>{{msg}}</p>
+  <div class="button-group">
+    <button class="button" @click="selectedComp='greeting'">Greeting</button>
+    <button class="button" @click="selectedComp='user'">User</button>
+  </div>
+  <keep-alive>
+  <component :is="selectedComp" :age="age"></component>
+  </keep-alive>
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
+import greeting from './components/Greeting.vue'
+import user from './components/User.vue'
+export default{
   name: 'App',
-  components: {
-    HelloWorld
+  data(){
+    return {
+      msg: 'Heloofdfdf',
+      age: 40,
+      selectedComp:'greeting'
+    }
+  },
+  components:{
+    greeting,
+    user
+  },
+  methods:{
+    updateChangedAge(){
+      this.age++
+    }
   }
 }
+
+
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
